@@ -112,13 +112,11 @@ static CGFloat titleFontSize = 15.0;
     }
     self.background.frame = nvc.view.frame;
     [tableView beginUpdates];
-    CGRect headerFrame = tableView.tableHeaderView.bounds;
-    headerFrame.size.height = 80;
     [UIView animateWithDuration:0.5 delay:0.0
                         options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                         self.dop_y = self.afterAnimationFrame.origin.y;
-                         tableView.tableHeaderView.bounds = headerFrame;
+                         tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 80)];
                          [tableView endUpdates];
                      } completion:^(BOOL finished) {
                         if (self.delegate != nil) {
@@ -130,9 +128,6 @@ static CGFloat titleFontSize = 15.0;
 
 - (void)dismissWithAnimation:(BOOL)animation tableView:(UITableView *)tableView {
     void (^completion)(void) = ^void(void) {
-        if (self.delegate != nil) {
-            [self.delegate willDismissMenu:self];
-        }
         [self removeFromSuperview];
         [self.background removeFromSuperview];
         if (self.delegate != nil) {

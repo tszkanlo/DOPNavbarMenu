@@ -28,7 +28,6 @@
 
 - (void)didShowMenu:(DOPNavbarMenu *)menu;
 - (void)didDismissMenu:(DOPNavbarMenu *)menu;
-- (void)willDismissMenu:(DOPNavbarMenu *)menu;
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index;
 
 @end
